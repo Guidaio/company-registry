@@ -11,6 +11,8 @@ import com.itau.company_registry.dto.CreateCompanyRequest;
 import com.itau.company_registry.model.Company;
 import com.itau.company_registry.service.CompanyService;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -24,7 +26,7 @@ public class CompanyController {
     }
 
     @PostMapping
-    public CompanyResponse createCompany(@RequestBody CreateCompanyRequest request) {       
+    public CompanyResponse createCompany(@Valid @RequestBody CreateCompanyRequest request) {       
         return companyService.createCompany(request);
     }
 

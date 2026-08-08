@@ -97,35 +97,35 @@ Os endpoints já implementados e respondendo a partir da lista em memória são:
 ---
 
 ## 🟡 Plano de Evolução e Próximos Passos
-### O que falta para completar o CRUD na memória
-Antes de migrar para persistência real, ainda faltam os seguintes comportamentos na abordagem em memória:
-- `GET /companies/{id}` para buscar uma empresa por ID.
-- `PUT /companies/{id}` para atualizar uma empresa existente.
-- `DELETE /companies/{id}` para remover uma empresa.
 
-### Checklist de transição da memória para a infraestrutura real
-- [ ] Separação de responsabilidades
+
+### Checklist de transição da memória para a infraestrutura real (07/08/2026)
+- [x] Separação de responsabilidades
   - Criar um `CompanyController` dedicado para os endpoints REST.
   - Remover a lógica de armazenamento do controller e isolá-la em uma camada apropriada.
   - Separar DTOs do modelo de domínio.
 
-- [ ] Provisionamento do banco PostgreSQL
+- [x] Provisionamento do banco PostgreSQL
   - Criar e subir uma instância do PostgreSQL via Docker ou `docker-compose`.
   - Definir um ambiente local consistente para o desenvolvimento.
 
-- [ ] Configuração das credenciais reais no `application.properties`
+- [x] Configuração das credenciais reais no `application.properties`
   - Substituir as configurações genéricas/temporárias por credenciais reais do ambiente local ou de desenvolvimento.
   - Ajustar a URL, usuário, senha e driver do banco.
 
-- [ ] Implementação do Spring Data JPA
+- [x] Implementação do Spring Data JPA
   - Criar `CompanyRepository extends JpaRepository<Company, Long>`.
   - Transformar a entidade `Company` em uma entidade JPA real com `@Entity` e mapeamento de colunas.
   - Substituir a lista em memória pelo repositório.
 
-- [ ] Criação da camada de serviço
+- [x] Criação da camada de serviço
   - Criar `CompanyService` para concentrar as regras de negócio.
   - O controller deve depender do serviço, e não mais da lista em memória.
 
-### Direção do próximo passo
-O próximo salto técnico recomendado é: sair da lógica de lista em memória, criar a camada de serviço e introduzir o Spring Data JPA com PostgreSQL real, mantendo o contrato REST já iniciado.
+
+### 🟡 Próximos Passos (08/08/2026)
+- [x] Migração para JPA/PostgreSQL.
+- [ ] **Robustez (Validação):** Implementar `@Valid` (em progresso) e criar `@ControllerAdvice` para tratamento centralizado de erros.
+- [ ] **Testes de Integração:** Implementar testes utilizando o banco real via `@DataJpaTest` ou `@SpringBootTest`.
+- [ ] **Evolução do CRUD:** Implementar métodos `GET /{id}`, `PUT /{id}` e `DELETE /{id}`.
 
