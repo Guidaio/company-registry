@@ -125,7 +125,7 @@ Os endpoints já implementados e respondendo a partir da lista em memória são:
 
 ### 🟡 Próximos Passos (08/08/2026)
 - [x] Migração para JPA/PostgreSQL.
-- [ ] **Robustez (Validação):** Implementar `@Valid` (em progresso) e criar `@ControllerAdvice` para tratamento centralizado de erros.
+- [] **Robustez (Validação):** Implementar `@Valid` (em progresso) e criar `@ControllerAdvice` para tratamento centralizado de erros.
 - [ ] **Testes de Integração:** Implementar testes utilizando o banco real via `@DataJpaTest` ou `@SpringBootTest`.
 - [ ] **Evolução do CRUD:** Implementar métodos `GET /{id}`, `PUT /{id}` e `DELETE /{id}`.
 

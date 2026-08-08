@@ -9,8 +9,8 @@ public class CreateCompanyRequest {
     public String getName(){
         return name;
     }
-    
-    @NotBlank(message = "Company name cannot be blank")
+
+    @NotBlank(message = "Company name cannot be blank") 
     public void setName(String name){
         this.name = name;
     }    
