@@ -4,6 +4,8 @@ import com.itau.company_registry.model.Company;
 import com.itau.company_registry.dto.CreateCompanyRequest;
 import com.itau.company_registry.dto.CompanyResponse;
 import com.itau.company_registry.repository.CompanyRepository;
+import com.itau.company_registry.exception.ResourceNotFoundException;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +30,27 @@ public class CompanyService {
 
     public List<Company> getCompanies(){
         return companyRepository.findAll();
+    }
+
+    public CompanyResponse getCompanyById(Long id){
+        Company company = companyRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Empresa não encontrada com o ID: " + id));
+
+        return new CompanyResponse(company.getId(), company.getName());
+    }
+
+    public void deleteCompany(Long id){
+        Company company = companyRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Empresa não encontrada com o ID: " + id));
+
+        companyRepository.delete(company);
+    }
+
+    public void updateCompany(Long id, CreateCompanyRequest request){
+        Company company = companyRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Empresa não encontrada com o ID: " + id));
+        
+        company.setName(request.getName());        
     }
 
 }
