@@ -23,12 +23,12 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
-    @PostMapping("/companies")
+    @PostMapping
     public CompanyResponse createCompany(@RequestBody CreateCompanyRequest request) {       
         return companyService.createCompany(request);
     }
 
-    @GetMapping("/companies")
+    @GetMapping
     public List<Company> getCompanies() {
         return companyService.getCompanies();
     }

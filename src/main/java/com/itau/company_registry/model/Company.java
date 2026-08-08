@@ -1,14 +1,23 @@
 package com.itau.company_registry.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "companies")
 public class Company {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
 
-    public Company(){        
+    public Company() {
+
     }
 
-    public Company(Long id, String name){
-        this.id = id;
+    public Company(String name) {
         this.name = name;
     }
 
@@ -20,11 +29,12 @@ public class Company {
         this.id = id;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
+
 }
