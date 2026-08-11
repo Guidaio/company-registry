@@ -18,6 +18,8 @@ import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -39,6 +41,12 @@ public class CompanyController {
     public List<Company> getCompanies() {
         return companyService.getCompanies();
     }
+
+    @GetMapping("/{id}")
+    public CompanyResponse getCompanyById(@PathVariable Long id) {
+        return companyService.getCompanyById(id);
+    }
+    
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateCompany(@PathVariable Long id, @Valid @RequestBody CreateCompanyRequest request) {
