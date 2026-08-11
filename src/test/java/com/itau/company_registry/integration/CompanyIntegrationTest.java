@@ -39,11 +39,11 @@ public class CompanyIntegrationTest {
         CreateCompanyRequest request = new CreateCompanyRequest();
         request.setName("Itaú Trocar");
         ResponseEntity<CompanyResponse> response = restTemplate.postForEntity("/companies", request, CompanyResponse.class);
-        Long Id = response.getBody().getId();
+        Long id = response.getBody().getId();
 
         request.setName("Itaú Atualizado");
-        restTemplate.put("/companies/" + Id, request);
-        ResponseEntity<CompanyResponse> getResponse = restTemplate.getForEntity("/companies/", CompanyResponse.class);
+        restTemplate.put("/companies/" + id, request);
+        ResponseEntity<CompanyResponse> getResponse = restTemplate.getForEntity("/companies/" + id, CompanyResponse.class);
 
         assertEquals(HttpStatus.OK, getResponse.getStatusCode());
         assertEquals("Itaú Atualizado", getResponse.getBody().getName());        
@@ -53,12 +53,12 @@ public class CompanyIntegrationTest {
     void shouldDeleteCompany(){
         CreateCompanyRequest request = new CreateCompanyRequest();
         request.setName("Itaú Deletar");
-        ResponseEntity<CompanyResponse> response = restTemplate.postForEntity("/companies/", request, CompanyResponse.class);
+        ResponseEntity<CompanyResponse> response = restTemplate.postForEntity("/companies", request, CompanyResponse.class);
         Long id = response.getBody().getId();
 
         restTemplate.delete("/companies/" + id);
 
-        ResponseEntity<ErrorResponse> getResponse = restTemplate.getForEntity("/companies/", ErrorResponse.class);
+        ResponseEntity<ErrorResponse> getResponse = restTemplate.getForEntity("/companies/" + id, ErrorResponse.class);
         assertEquals(HttpStatus.NOT_FOUND, getResponse.getStatusCode());
     }
     
