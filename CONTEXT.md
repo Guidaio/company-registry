@@ -130,8 +130,8 @@ Os endpoints já implementados e respondendo a partir da lista em memória são:
 - [x] **Evolução do CRUD:** Implementar métodos `GET /{id}`, `PUT /{id}` e `DELETE /{id}`.
 
 ### 🚀 Próximos Desafios (10/08/2026)
-- [ ] **Aprimoramento de Testes:** Expandir CompanyIntegrationTest para cobrir PUT e DELETE, garantindo a integridade dos dados no banco real.
-- [ ] **Refatoração com Lombok:** Implementar @Getter, @Setter, @Builder, etc., para reduzir o código boilerplate nas entidades e DTOs.
+- [x] **Aprimoramento de Testes:** Expandir CompanyIntegrationTest para cobrir PUT e DELETE, garantindo a integridade dos dados no banco real.
+- [x] **Refatoração com Lombok:** Implementar @Getter, @Setter, @Builder, etc., para reduzir o código boilerplate nas entidades e DTOs.
 - [ ] **Database Migrations (Flyway):** Implementar versionamento de esquema de banco de dados (substituindo o ddl-auto).
 - [ ] **Documentação:** Integrar SpringDoc OpenAPI (Swagger) para expor a especificação da API.
 - [ ] **Segurança:** Implementar Spring Security básico com proteção de endpoints.

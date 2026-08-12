@@ -2,7 +2,6 @@ package com.itau.company_registry.integration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,37 +23,36 @@ public class CompanyIntegrationTest {
 
     @Test
     void shouldCreateCompany() {
-        CreateCompanyRequest request = new CreateCompanyRequest();
-
-        request.setName("Itaú Unibanco");
+        CreateCompanyRequest request = new CreateCompanyRequest("Itaú Unibanco");
+        
         ResponseEntity<CompanyResponse> response = restTemplate.postForEntity("/companies", request, CompanyResponse.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Itaú Unibanco", response.getBody().getName());
-        assertNotNull(response.getBody().getId());
+        assertEquals("Itaú Unibanco", response.getBody().name());
+        assertNotNull(response.getBody().id());
     }
 
     @Test
     void shouldUpdateCompany(){
-        CreateCompanyRequest request = new CreateCompanyRequest();
-        request.setName("Itaú Trocar");
+        CreateCompanyRequest request = new CreateCompanyRequest("Itaú Trocar");
+        
         ResponseEntity<CompanyResponse> response = restTemplate.postForEntity("/companies", request, CompanyResponse.class);
-        Long id = response.getBody().getId();
+        Long id = response.getBody().id();
 
-        request.setName("Itaú Atualizado");
-        restTemplate.put("/companies/" + id, request);
+        CreateCompanyRequest requestUpdate = CreateCompanyRequest.builder().name("Itaú Atualizado").build();
+        restTemplate.put("/companies/" + id, requestUpdate);
         ResponseEntity<CompanyResponse> getResponse = restTemplate.getForEntity("/companies/" + id, CompanyResponse.class);
 
         assertEquals(HttpStatus.OK, getResponse.getStatusCode());
-        assertEquals("Itaú Atualizado", getResponse.getBody().getName());        
+        assertEquals("Itaú Atualizado", getResponse.getBody().name());        
     }
 
     @Test
     void shouldDeleteCompany(){
-        CreateCompanyRequest request = new CreateCompanyRequest();
-        request.setName("Itaú Deletar");
+        CreateCompanyRequest request = new CreateCompanyRequest("Itaú Deletar");
+        
         ResponseEntity<CompanyResponse> response = restTemplate.postForEntity("/companies", request, CompanyResponse.class);
-        Long id = response.getBody().getId();
+        Long id = response.getBody().id();
 
         restTemplate.delete("/companies/" + id);
 
