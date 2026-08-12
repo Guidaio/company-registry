@@ -3,6 +3,7 @@ package com.itau.company_registry.integration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,13 @@ public class CompanyIntegrationTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
+    private TestRestTemplate authenticatedRestTemplate;
+
+
+    @BeforeEach
+    void setUp() {
+        this.authenticatedRestTemplate = restTemplate.withBasicAuth("admin", "admin123");
+    }
 
     @Test
     void shouldCreateCompany() {
