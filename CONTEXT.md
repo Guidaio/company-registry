@@ -135,4 +135,4 @@ Os endpoints já implementados e respondendo a partir da lista em memória são:
 - [x] **Database Migrations (Flyway):** Implementar versionamento de esquema de banco de dados (substituindo o ddl-auto).
 - [x] **Documentação:** Integrar SpringDoc OpenAPI (Swagger) para expor a especificação da API.
 - [ ] **Segurança:** Implementar Spring Security básico com proteção de endpoints.
-- [ ] **Monitoramento:** Adicionar Spring Boot Actuator para endpoints de Health Check e métricas.
+- [x] **Monitoramento:** Adicionar Spring Boot Actuator para endpoints de Health Check e métricas.
