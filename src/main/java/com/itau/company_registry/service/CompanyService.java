@@ -25,7 +25,7 @@ public class CompanyService {
 
     public CompanyResponse createCompany(CreateCompanyRequest request){
         Company company = new Company();
-        company.setName(request.getName());
+        company.setName(request.name());
     
         Company savedCompany = companyRepository.save(company);
 
@@ -54,7 +54,7 @@ public class CompanyService {
         Company company = companyRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Empresa não encontrada com o ID: " + id));
         
-        company.setName(request.getName());
+        company.setName(request.name());
     }
 
 }
